@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,27 +10,35 @@
   <link rel="stylesheet" href="node_modules/leaflet/dist/leaflet.css">
   <link rel="stylesheet" type="text/css" media="screen" href="./main.css" />
 </head>
+
 <body>
-  <div id="app">
-    <div class="container is-fluid">
-      <header class="hero">
-        <div class="hero-body">
-          <h1 class="title"> WebSem Map </h1>
+  <div class="container is-fluid" id="app">
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            Frise du cinéma français
+          </h1>
+          <vue-slider @drag-end="updateYear"	ref="slider1" v-bind="frieze" v-model="frieze.value"></vue-slider>
+            
+          <div class="columns" v-for="filmGroup in filmsByYears">
+            <film-card v-for="film in filmGroup" :film="film" :actors="actors"></film-card>
+          </div>
+
         </div>
-      </header>
-      <main class="columns">
-        <div class="column map">
-          <l-map :zoom="map.zoom" :center="map.center">
-            <l-tile-layer :url="map.url" :attribution="map.attribution"></l-tile-layer>
-            <l-marker v-for="m in markers" :key="m.id" :lat-lng="m.latLng"></l-marker>
-          </l-map>
-        </div>
-      </main>
+      </div>
+    </section>
   </div>
   <script src="node_modules/vue/dist/vue.min.js"></script>
+  <script src="./modal.js"></script>
+  <script src="./film_card.js"></script>
   <script src="node_modules/leaflet/dist/leaflet.js"></script>
+  <script src="node_modules/lodash/lodash.min.js"></script>
   <script src="node_modules/vue2-leaflet/dist/vue2-leaflet.min.js"></script>
+  <script src="node_modules/vue-slider-component/dist/index.js"></script>
+
   <script src="./fuseki.js"></script>
   <script src="./main.js"></script>
 </body>
+
 </html>

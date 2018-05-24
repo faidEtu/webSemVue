@@ -11,6 +11,7 @@
   "dependencies": {
     "bulma": "^0.7.1",
     "vue": "^2.5.16",
+    "vue-slider-component": "^2.6.2",
     "vue2-leaflet": "^1.0.2"
   }
 }
